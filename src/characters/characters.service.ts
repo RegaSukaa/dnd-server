@@ -12,7 +12,14 @@ export class CharactersService {
   async create(data: any, userId: number) {
     return this.prisma.character.create({
       data: {
-        ...data,
+        name: data.name,
+        class: data.class,
+        race: data.race,
+        background: data.background,
+        hpMax: data.hpMax,
+        hpCurrent: data.hpCurrent,
+        speed: data.speed,
+        proficiencyBonus: data.proficiencyBonus,
         userId,
         stats: { create: data.stats },
       },

@@ -7,15 +7,13 @@ export class CharactersController {
 
   @Get()
   async findAll(@Req() req) {
-    // в реальном проекте userId берётся из JWT
-    const userId = 1; // временно
+    const userId = 1; // пока заглушка
     return this.charactersService.findAllByUser(userId);
   }
 
   @Post()
-  async create(@Body() createDto: any, @Req() req) {
-    const userId = 1; // временно
-    return this.charactersService.create(createDto, userId);
+  async create(@Body() createDto: any) {
+    return this.charactersService.create(createDto, 1);
   }
 
   @Get(':id')

@@ -14,6 +14,6 @@ export class AuthService {
     if (!user) {
       user = await this.prisma.user.create({ data: { telegramId, username } });
     }
-    return this.jwtService.sign({ sub: user.id, telegramId: user.telegramId });
+    return this.jwtService.sign({ sub: user.id });
   }
 }
