@@ -1,0 +1,7 @@
+"scripts": {
+  "build": "nest build",
+  "start:dev": "nest start --watch",
+  "start:prod": "node dist/main.js",
+  "prisma:generate": "npx prisma generate",
+  "prisma:migrate": "npx prisma migrate dev"
+}

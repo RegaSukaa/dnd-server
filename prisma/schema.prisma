@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  telegramId String   @unique
+  username  String?
+  createdAt DateTime @default(now())
+  characters Character[]
+}
+
+model Character {
+  id              Int      @id @default(autoincrement())
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id])
+  name            String
+  level           Int      @default(1)
+  experience      Int      @default(0)
+  class           String
+  subclass        String?
+  race            String
+  subrace         String?
+  background      String?
+  alignment       String?
+  hpMax           Int
+  hpCurrent       Int
+  hpTemp          Int      @default(0)
+  inspiration     Boolean  @default(false)
+  speed           Int      @default(30)
+  proficiencyBonus Int     @default(2)
+  armorClass      Int?
+  conditions      Json     @default("[]")
+  personality     Json?
+  notes           String?
+  stats           CharacterStats?
+}
+
+model CharacterStats {
+  id          Int        @id @default(autoincrement())
+  characterId Int        @unique
+  character   Character  @relation(fields: [characterId], references: [id])
+  str         Int
+  dex         Int
+  con         Int
+  int         Int
+  wis         Int
+  cha         Int
+}
