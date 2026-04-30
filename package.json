@@ -5,7 +5,8 @@
   "scripts": {
     "build": "nest build",
     "start:dev": "nest start --watch",
-    "start:prod": "npx prisma migrate deploy && node dist/main.js"
+    "start:prod": "npx prisma migrate deploy && node dist/main.js",
+    "prebuild": "npx prisma generate"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.0",
