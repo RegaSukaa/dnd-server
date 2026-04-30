@@ -34,6 +34,12 @@ export class CharactersService {
   }
 
   async update(id: number, data: any) {
-    return this.prisma.character.update({ where: { id }, data });
+    return this.prisma.character.update({
+      where: { id },
+      data: {
+        ...data,
+        stats: data.stats ? { update: data.stats } : undefined,
+      },
+    });
   }
 }
